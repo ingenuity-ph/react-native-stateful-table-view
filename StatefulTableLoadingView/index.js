@@ -18,18 +18,23 @@ class StatefulTableLoadingView extends Component {
     activityIndicatorDetails: PropTypes.object,
     customStyle: PropTypes.object,
     detailText: PropTypes.string,
+    hasActivityIndicator: PropTypes.bool,
     headerText: PropTypes.string
-  }
+  };
+  static defaultProps = {
+    hasActivityIndicator: true
+  };
 
   render() {
     let {
       activityIndicatorDetails,
       customStyle,
       detailText,
+      hasActivityIndicator,
       headerText
     } = this.props;
 
-    let defaultActivityIndicator = null;
+    let defaultActivityIndicator = <ActivityIndicator {...{style: styles.activityIndicator}} />;
     let defaultMessage = '';
 
     // Check either to use user-specified styles or the default styles.
@@ -50,7 +55,7 @@ class StatefulTableLoadingView extends Component {
 
     return(
       <View style={customStyle.container}>
-        {defaultActivityIndicator}
+        {hasActivityIndicator && defaultActivityIndicator}
         <Text style={customStyle.headerText}>{headerText}</Text>
         <Text style={customStyle.detailText}>{detailText}</Text>
       </View>
