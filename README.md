@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-$ npm install --save react-native-stateful-table-view
+$ npm install --save @ingenuity-labs/react-native-stateful-table-view
 ```
 
 ## Usage

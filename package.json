@@ -1,6 +1,6 @@
 {
-  "name": "react-native-stateful-table-view",
-  "version": "1.0.0",
+  "name": "@ingenuity-labs/react-native-stateful-table-view",
+  "version": "1.0.1",
   "description": "A React Native component based on FlatList that provides an option to display different views for each of its states (empty datasource, error, loading).",
   "main": "index.js",
   "scripts": {
