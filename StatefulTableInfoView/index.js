@@ -1,43 +1,42 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  ActivityIndicator,
-  Button,
   Image,
   Text,
-  View
+  View,
 } from 'react-native';
-
-import styles from './styles';
-import StatefulTableViewConstants from '../StatefulTableViewConstants';
 
 import _ from 'lodash';
 
+import styles from './styles';
 
-class StatefulTableInfoView extends Component {
+
+class StatefulTableInfoView extends PureComponent {
   static propTypes = {
-    headerText: PropTypes.string.isRequired,
-
     customStyle: PropTypes.object,
     detailText: PropTypes.string,
-    imageDetails: PropTypes.object
+    headerText: PropTypes.string,
+    imageDetails: PropTypes.object,
   };
   static defaultProps = {
-    headerText: 'No data available'
+    customStyle: styles,
+    detailText: '',
+    headerText: 'No data available',
+    imageDetails: null,
   };
 
   render() {
-    let {
-      headerText,
-
-      customStyle,
+    const {
       detailText,
-      imageDetails
+      headerText,
+      imageDetails,
     } = this.props;
 
+    let {
+      customStyle,
+    } = this.props;
     let defaultImage = null;
-    let defaultMessage = '';
 
     // Check either to use user-specified styles or the default styles.
     customStyle = (customStyle && _.size(customStyle) > 0) ? customStyle : styles;
@@ -54,7 +53,7 @@ class StatefulTableInfoView extends Component {
       defaultImage = <Image {...imageDetails} />;
     }
 
-    return(
+    return (
       <View style={customStyle.container}>
         {defaultImage}
         <Text style={customStyle.headerText}>{headerText}</Text>

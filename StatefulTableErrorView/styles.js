@@ -1,9 +1,9 @@
 import {
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 
-var padding = 20
+const padding = 20;
 
 export default StyleSheet.create({
   activityIndicator: {
@@ -36,5 +36,5 @@ export default StyleSheet.create({
     height: 100,
     marginBottom: 20,
     width: 100,
-  }
+  },
 });

@@ -4,7 +4,7 @@ const StatefulTableViewConstants = {
     DATA: 1,
     ERROR: {
       SERVER: -1,
-      INTERNET_CONNECTION: -2
+      INTERNET_CONNECTION: -2,
     },
   },
 };

@@ -7,9 +7,9 @@ import StatefulTableViewConstants from './StatefulTableViewConstants';
 /* Export ==================================================================== */
 
 module.exports = {
-  StatefulTableErrorView: StatefulTableErrorView,
-  StatefulTableInfoView: StatefulTableInfoView,
-  StatefulTableLoadingView: StatefulTableLoadingView,
-  StatefulTableView: StatefulTableView,
-  StatefulTableViewConstants: StatefulTableViewConstants
-}
+  StatefulTableErrorView,
+  StatefulTableInfoView,
+  StatefulTableLoadingView,
+  StatefulTableView,
+  StatefulTableViewConstants,
+};

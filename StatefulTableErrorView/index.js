@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  ActivityIndicator,
   Image,
   Text,
-  View
+  View,
 } from 'react-native';
+
+import _ from 'lodash';
 
 import styles from './styles';
 import ErrorButton from '../ErrorButton/';
 
-import _ from 'lodash';
-
 const Constants = require('../StatefulTableViewConstants');
 
 
-class StatefulTableErrorView extends Component {
+class StatefulTableErrorView extends PureComponent {
   static propTypes = {
     state: PropTypes.number.isRequired,
 
@@ -24,24 +23,28 @@ class StatefulTableErrorView extends Component {
     detailText: PropTypes.string,
     errorButtonDetails: PropTypes.object,
     headerText: PropTypes.string,
-    imageDetails: PropTypes.object
+    imageDetails: PropTypes.object,
   };
   static defaultProps = {
-    state: Constants.States.ERROR.SERVER,
+    customStyle: styles,
+    detailText: '',
+    errorButtonDetails: null,
+    headerText: '',
+    imageDetails: null,
   };
 
   render() {
-    let {
+    const {
       state,
-
-      customStyle,
       detailText,
       errorButtonDetails,
-      headerText,
-      imageDetails
+      imageDetails,
     } = this.props;
 
-    let defaultButton = null;
+    let {
+      customStyle,
+      headerText,
+    } = this.props;
     let defaultImage = null;
     let defaultMessage = '';
 
@@ -73,7 +76,7 @@ class StatefulTableErrorView extends Component {
 
     headerText = (headerText && headerText.length > 0) ? headerText : defaultMessage;
 
-    return(
+    return (
       <View style={customStyle.container}>
         {defaultImage}
         <Text style={customStyle.headerText}>{headerText}</Text>

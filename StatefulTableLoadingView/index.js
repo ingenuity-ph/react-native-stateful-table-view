@@ -1,45 +1,40 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import {
   ActivityIndicator,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import styles from './styles';
-import StatefulTableViewConstants from '../StatefulTableViewConstants';
-
-import _ from 'lodash';
 
 
-class StatefulTableLoadingView extends Component {
+class StatefulTableLoadingView extends PureComponent {
   static propTypes = {
     activityIndicatorDetails: PropTypes.object,
     customStyle: PropTypes.object,
     detailText: PropTypes.string,
     hasActivityIndicator: PropTypes.bool,
-    headerText: PropTypes.string
+    headerText: PropTypes.string,
   };
   static defaultProps = {
-    hasActivityIndicator: true
+    activityIndicatorDetails: null,
+    customStyle: styles,
+    detailText: '',
+    headerText: 'Loading...',
+    hasActivityIndicator: true,
   };
 
   render() {
-    let {
+    const {
       activityIndicatorDetails,
       customStyle,
       detailText,
       hasActivityIndicator,
-      headerText
+      headerText,
     } = this.props;
-
-    let defaultActivityIndicator = <ActivityIndicator {...{style: styles.activityIndicator}} />;
-    let defaultMessage = '';
-
-    // Check either to use user-specified styles or the default styles.
-    customStyle = (customStyle && _.size(customStyle) > 0) ? customStyle : styles;
-    headerText = (headerText && headerText.length > 0) ? headerText : 'Loading...';
+    let defaultActivityIndicator = <ActivityIndicator {...{ style: styles.activityIndicator }} />;
 
     if (activityIndicatorDetails) {
       if (activityIndicatorDetails.style) {
@@ -53,7 +48,7 @@ class StatefulTableLoadingView extends Component {
       defaultActivityIndicator = <ActivityIndicator {...activityIndicatorDetails} />;
     }
 
-    return(
+    return (
       <View style={customStyle.container}>
         {hasActivityIndicator && defaultActivityIndicator}
         <Text style={customStyle.headerText}>{headerText}</Text>

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
   FlatList,
-  StyleSheet,
-  Text,
-  View
 } from 'react-native';
 
 import StatefulTableErrorView from './StatefulTableErrorView';
@@ -24,28 +21,31 @@ class StatefulTableView extends PureComponent {
 
     emptyStateView: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object
+      PropTypes.object,
     ]),
     errorStateView: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object
+      PropTypes.object,
     ]),
     loadingStateView: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object
+      PropTypes.object,
     ]),
     refreshControl: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object
+      PropTypes.object,
     ]),
     separator: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.object
+      PropTypes.object,
     ]),
   };
   static defaultProps = {
-    data: [],
-    state: Constants.States.DATA,
+    emptyStateView: <StatefulTableInfoView />,
+    errorStateView: null,
+    loadingStateView: <StatefulTableLoadingView />,
+    refreshControl: null,
+    separator: null,
   };
 
   render() {
@@ -59,10 +59,10 @@ class StatefulTableView extends PureComponent {
       errorStateView,
       loadingStateView,
       refreshControl,
-      separator
+      separator,
     } = this.props;
 
-    let flatListView = (refreshControl != null) ? (
+    const flatListView = (refreshControl != null) ? (
       <FlatList
         data={data}
         keyExtractor={keyExtractor}
@@ -81,23 +81,15 @@ class StatefulTableView extends PureComponent {
 
     switch (state) {
       case Constants.States.LOADING:
-        return loadingStateView ? loadingStateView : <StatefulTableLoadingView />;
-
-        break;
+        return loadingStateView;
       case Constants.States.DATA:
-        if (data.length == 0) {
-          return emptyStateView ? emptyStateView : <StatefulTableInfoView />;
-
-          break;
+        if (data.length === 0) {
+          return emptyStateView;
         }
 
         return flatListView;
-
-        break;
       default:
-        return errorStateView ? errorStateView : <StatefulTableErrorView state={state} />
-
-        break;
+        return errorStateView || <StatefulTableErrorView state={state} />;
     }
   }
 }
