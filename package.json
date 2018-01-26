@@ -1,6 +1,6 @@
 {
   "name": "@ingenuity-labs/react-native-stateful-table-view",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A React Native component based on FlatList that provides an option to display different views for each of its states (empty datasource, error, loading).",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/ingenuityph/react-native-stateful-table-view.git"
+    "url": "https://github.com/ingenuity-ph/react-native-stateful-table-view"
   },
   "keywords": [
     "Stateful",
@@ -16,6 +16,6 @@
     "View"
   ],
   "author": "Jason Jon E. Carreos",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/ingenuityph/react-native-stateful-table-view#readme"
+  "license": "MIT",
+  "homepage": "https://github.com/ingenuity-ph/react-native-stateful-table-view"
 }
